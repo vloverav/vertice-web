@@ -824,30 +824,40 @@
                     </div>
                 </div>
 
-<form action="https://formsubmit.co/contacto@salavertice.com" method="POST" class="contact-form">
-                    
-                    <input type="hidden" name="_subject" value="Nuevo Lead Estratégico desde la Web de Vértice">
-                    <input type="hidden" name="_next" value="https://salavertice.com">
-                    <input type="hidden" name="_captcha" value="false">
+<div id="contenedor-formulario">
+    <form id="form-contacto" action="https://formsubmit.co/ajax/contacto@salavertice.com" method="POST" class="contact-form">
+        
+        <input type="hidden" name="_subject" value="Nuevo Lead Estratégico desde la Web de Vértice">
+        <input type="hidden" name="_captcha" value="false">
 
-                    <div class="form-group">
-                        <label for="nombre">Nombre Completo</label>
-                        <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza">
-                    </div>
-                    <div class="form-group">
-                        <label for="empresa">Organización / Empresa</label>
-                        <input type="text" id="empresa" name="empresa" required placeholder="Nombre de su compañía">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico Corporativo</label>
-                        <input type="email" id="email" name="email" required placeholder="carlos@suempresa.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="mensaje">Breve descripción de su reto</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿En qué fase se encuentra?"></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Solicitar Sesión Estratégica</button>
-                </form>
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza">
+        </div>
+        <div class="form-group">
+            <label for="empresa">Organización / Empresa</label>
+            <input type="text" id="empresa" name="empresa" required placeholder="Nombre de su compañía">
+        </div>
+        <div class="form-group">
+            <label for="email">Correo Electrónico Corporativo</label>
+            <input type="email" id="email" name="email" required placeholder="carlos@suempresa.com">
+        </div>
+        <div class="form-group">
+            <label for="mensaje">Breve descripción de su reto</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿En qué fase se encuentra?"></textarea>
+        </div>
+        <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Solicitar Sesión Estratégica</button>
+    </form>
+
+    <div id="mensaje-exito" style="display: none; background-color: rgba(46, 134, 171, 0.1); border: 1px solid var(--corp-blue); padding: 2rem; border-radius: 4px; text-align: center; margin-top: 1rem;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--corp-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem; margin-left: auto; margin-right: auto; display: block;">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <h4 style="color: var(--white); margin-bottom: 0.5rem; font-size: 1.2rem;">Solicitud enviada exitosamente</h4>
+        <p style="color: var(--neutral-grey); font-size: 0.95rem; margin-bottom: 0;">Hemos recibido tu información. Nuestro equipo revisará tu reto y pronto nos pondremos en contacto contigo.</p>
+    </div>
+</div>
             </div>
         </section>
 
@@ -902,6 +912,36 @@
                 }
             });
         });
+ // --- Lógica para enviar el formulario sin recargar la página ---
+            const formContacto = document.getElementById('form-contacto');
+            const mensajeExito = document.getElementById('mensaje-exito');
+
+            if (formContacto) {
+                formContacto.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Evita que la página recargue
+                    
+                    const boton = formContacto.querySelector('button[type="submit"]');
+                    boton.textContent = 'Enviando...';
+                    boton.disabled = true;
+
+                    // Enviamos los datos en segundo plano
+                    fetch(formContacto.action, {
+                        method: formContacto.method,
+                        body: new FormData(formContacto)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Ocultamos el formulario y mostramos el mensaje elegante
+                        formContacto.style.display = 'none';
+                        mensajeExito.style.display = 'block';
+                    })
+                    .catch(error => {
+                        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
+                        boton.textContent = 'Solicitar Sesión Estratégica';
+                        boton.disabled = false;
+                    });
+                });
+            }
     </script>
 
 </body>
