@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vértice SDO | Strategy • Digital • Operations</title>
+    <meta name="description" content="Firma boutique especializada en cerrar la brecha entre la visión estratégica y la capacidad real de ejecución operativa.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. VARIABLES CSS (IDENTIDAD VISUAL ESTRICTA)
+           ========================================================================== */
+        :root {
+            --dark-blue: #1B263B;
+            --corp-blue: #2E86AB;
+            --vertice-orange: #E04300;
+            --neutral-grey: #E2E2E2;
+            --bg-cream: #EEE0CB; /* Corregido a HEX válido (0 en lugar de O) */
+            --text-main: #334155;
+            --white: #FFFFFF;
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        /* ==========================================================================
+           2. RESET Y ESTILOS BASE
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--dark-blue);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Contenedor principal para alinear el contenido */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--vertice-orange);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 4px;
+            border: 2px solid var(--vertice-orange);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--vertice-orange);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--vertice-orange);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--vertice-orange);
+            color: var(--white);
+        }
+
+        /* ==========================================================================
+           3. CABECERA Y NAVEGACIÓN
+           ========================================================================== */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--neutral-grey);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo img {
+            height: 65px;
+            width: auto;
+            display: block;
+        }
+
+        /* Fallback visual en caso de que la imagen no cargue */
+        .logo-fallback {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-fallback span {
+            color: var(--vertice-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--corp-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--dark-blue);
+        }
+
+        /* ==========================================================================
+           4. SECCIÓN HERO
+           ========================================================================== */
+        .hero {
+            background-color: var(--bg-cream);
+            padding: 12rem 0 8rem 0;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            color: var(--text-main);
+            max-width: 750px;
+        }
+
+        /* ==========================================================================
+           5. LÍNEAS DE NEGOCIO (3 Columnas)
+           ========================================================================== */
+        .business-lines {
+            padding: 6rem 0;
+            background-color: var(--white);
+            margin-top: -4rem; /* Solapamiento elegante con el Hero */
+            position: relative;
+            z-index: 10;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-large {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border: 1px solid var(--neutral-grey);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            border-top: 4px solid var(--corp-blue);
+        }
+
+        .card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1.5rem;
+            color: var(--vertice-orange);
+        }
+
+        .card-large h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-large p {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           6. DETALLE DE SERVICIOS (Grilla 3x2)
+           ========================================================================== */
+        .services {
+            padding: 5rem 0 8rem 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border: 1px solid var(--neutral-grey);
+            padding: 2.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: var(--corp-blue);
+        }
+
+        .service-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card h4::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--vertice-orange);
+            border-radius: 50%;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        .service-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================================================
+           7. POR QUÉ NOSOTROS (Asimétrico)
+           ========================================================================== */
+        .why-us {
+            background-color: var(--bg-cream);
+            padding: 8rem 0;
+        }
+
+        .why-us-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .why-us-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .why-us-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Contenedor limpio, sin fondos azules ni alturas forzadas */
+        .why-us-image {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ESTILOS PARA LA NUEVA IMAGEN CONCEPTUAL */
+        .why-us-image img.vertice-conceptual-visual {
+            width: 100%;
+            height: auto; 
+            max-height: 500px; 
+            object-fit: contain; 
+            display: block;
+            margin: 0 auto; 
+        }
+
+        /* Ajuste responsive para móviles */
+        @media (max-width: 768px) {
+            .why-us-image img.vertice-conceptual-visual {
+                max-height: 350px;
+            }
+        }
+        /* ==========================================================================
+           8. NUESTRO ENFOQUE (Timeline)
+           ========================================================================== */
+        .approach {
+            padding: 8rem 0;
+            background-color: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 2px;
+            background-color: var(--neutral-grey);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 5rem;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--white);
+            border: 2px solid var(--corp-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--corp-blue);
+            z-index: 2;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           9. CONTACTO Y CTA FINAL
+           ========================================================================== */
+        .contact {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 6rem 0;
+        }
+
+        .contact h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            color: var(--neutral-grey);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: var(--neutral-grey);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            color: var(--white);
+            font-family: var(--font-main);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--vertice-orange);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ==========================================================================
+           10. PIE DE PÁGINA
+           ========================================================================== */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-slogan {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a:hover {
+            color: var(--vertice-orange);
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 3rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ==========================================================================
+           11. RESPONSIVE DESIGN (Media Queries)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .why-us-content, .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .why-us-image {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 10rem 0 6rem 0;
+            }
+
+            .business-lines {
+                margin-top: -2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-marker {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .timeline-step {
+                padding-left: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="Vértice SDO.jpg" alt="Vértice SDO | Strategy • Digital • Operations" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display: none;">VÉRTICE<span>.</span></div>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#enfoque">Enfoque</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto" class="btn btn-outline" style="padding: 0.5rem 1rem;">Contacto</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Abrir menú">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Hacemos que la estrategia y los proyectos funcionen en entornos complejos.</h1>
+                    <p>Vértice es una firma boutique especializada en cerrar la brecha entre la visión estratégica de la alta dirección y la capacidad real de ejecución operativa, ejecutando con rigor en tiempos de incertidumbre. Apoyado en la digitalización.</p>
+                    <a href="#contacto" class="btn">Agendar diagnóstico estratégico</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="enfoque" class="business-lines container">
+            <div class="cards-grid">
+                <div class="card-large">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                    <h3>Estrategia y transformación organizacional</h3>
+                    <p>Diseño de planes estratégicos ejecutables, definición de propósito empresarial profundo y alineación milimétrica de las estructuras organizativas corporativas.</p>
+                </div>
+
+                <div class="card-large">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <h3>Programas, Proyectos y PMO Estratégica</h3>
+                    <p>Dirección técnica de iniciativas críticas de negocio, gestión integral de portafolios y fortalecimiento de mecanismos de control operativo.</p>
+                </div>
+
+                <div class="card-large">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <h3>Transformación Digital e IA</h3>
+                    <p>Implementación de tecnología SaaS e Inteligencia Artificial como habilitadores de eficiencia. Digitalización centrada exclusivamente en la mejora de procesos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Capacidades Operativas</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-main);">Profundidad analítica y rigor técnico aplicados a resolver sus retos más complejos.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>Gobernanza Corporativa y alineación</h4>
+                        <p>Diseñamos marcos de gobierno corporativo que aseguran la coherencia absoluta entre la junta directiva y el equipo gerencial, estableciendo roles, responsabilidades y procesos de toma de decisiones inequívocos.</p>
+                        <p>Nuestra metodología elimina los silos organizacionales, garantizando que cada área de su empresa opere bajo un mismo propósito y objetivos estratégicos unificados.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h4>Planificación Estratégica Ejecutable</h4>
+                        <p>Traducimos visiones corporativas complejas en hojas de ruta pragmáticas y orientadas a la acción, definiendo OKRs y KPIs que permiten a la alta gerencia medir el avance real de forma tangible.</p>
+                        <p>Evitamos los planes estáticos que quedan en el papel. Construimos estrategias dinámicas que se adaptan a la volatilidad del mercado sin perder el foco en la rentabilidad neta.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h4>Dirección de Programas Complejos</h4>
+                        <p>Asumimos el liderazgo técnico y metodológico de iniciativas críticas, aplicando los estándares globales del PMI (Project Management Institute) adaptados a la realidad específica de su industria.</p>
+                        <p>Coordinamos equipos multidisciplinarios e interdepartamentales para asegurar la entrega de proyectos en tiempo, costo y alcance, mitigando riesgos proactivamente.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h4>Mecanismos de control y seguimiento</h4>
+                        <p>Implementamos tableros de control directivo y rutinas de seguimiento (PMO) que brindan visibilidad absoluta y en tiempo real sobre el estado del portafolio de proyectos de la organización.</p>
+                        <p>Detectamos desviaciones presupuestarias y cronológicas de forma temprana, permitiendo intervenciones ejecutivas rápidas y basadas en datos para proteger su inversión.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h4>Adopción de Soluciones SaaS e IA</h4>
+                        <p>Evaluamos, seleccionamos e integramos herramientas tecnológicas basadas en la nube e Inteligencia Artificial para mejorar sus operaciones diarias.</p>
+                        <p>No implementamos tecnología por moda. Nuestro enfoque de gestión del cambio asegura una adopción cultural efectiva por parte de sus equipos, maximizando el ROI tecnológico.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <h4>Digitalización y optimización</h4>
+                        <p>Analizamos a profundidad su cadena de valor operativa para identificar redundancias sistémicas, automatizar tareas manuales repetitivas y rediseñar flujos de trabajo de principio a fin.</p>
+                        <p>El resultado es una organización sustancialmente más esbelta, rápida y escalable, capaz de operar con menor fricción administrativa y enfocada en actividades core de alto valor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="nosotros" class="why-us">
+            <div class="container why-us-content">
+                <div class="why-us-text">
+                    <h2>Experiencia Big.<br>Agilidad Boutique.</h2>
+                    <p>Más de 15 años de experiencia corporativa global y metodología rigurosamente probada con la flexibilidad, la rapidez de respuesta y el compromiso hiper-personalizado que solo una firma boutique puede ofrecer.</p>
+                    <p>Somos especialistas en operar en mercados de alta volatilidad y complejidad (con profunda experiencia probada en Venezuela y LATAM), aportando un enfoque híbrido e interdisciplinario que integra indisolublemente la estrategia directiva, las operaciones tácticas y la tecnología moderna.</p>
+                </div>
+                <div class="why-us-image">
+                    <img src="vertice_asset_conceptual.png" alt="Vértice: Convergencia de Estrategia, Digital y Operaciones" class="vertice-conceptual-visual">
+                </div>
+            </div>
+        </section>
+
+        <section class="approach">
+            <div class="container">
+                <div class="section-header">
+                    <h2>El 'Cómo' es tan importante como el 'Qué'</h2>
+                    <p>Nuestra metodología de intervención no es una caja negra. Acompañamos a su organización desde la concepción hasta la ejecución operativa, pasando por la transformación digital.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h4>Diagnóstico y alineación</h4>
+                            <p>Conocimiento del estado actual, identificación de retos, brechas operativas, necesidades tecnológicas y consenso directivo sobre los objetivos críticos de negocio antes de mover un solo recurso.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h4>Diseño de solución ejecutable</h4>
+                            <p>Arquitectura del plan de acción. Definición de hitos, presupuesto, requerimientos tecnológicos y métricas de éxito (KPIs/OKRs) libres de ambigüedad.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h4>Ejecución acompañada</h4>
+                            <p>Implementación bajo un modelo híbrido (Remoto/Presencial). Actuamos como PMO externa o colíderes del proyecto para asegurar el cumplimiento cronológico y financiero.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h4>Transferencia y control</h4>
+                            <p>No generamos dependencia. Aseguramos la adopción del cambio tecnológico y/o metodológico, dejando capacidades instaladas y tableros de control en su equipo interno.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <div class="container contact-wrapper">
+                <div class="contact-info">
+                    <h3>Hablemos de tu próximo hito.</h3>
+                    <p>Agenda una sesión estratégica de diagnóstico confidencial para evaluar la alineación y viabilidad de tus proyectos,retos o necesidades corporativos actuales. Obtendrás claridad inmediata sobre los próximos pasos.</p>
+                    
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--vertice-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span style="font-weight: 300; font-size: 1.1rem;">contacto@salavertice.com</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Solicitud enviada correctamente. Nuestro equipo se pondrá en contacto pronto.');">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza">
+                    </div>
+                    <div class="form-group">
+                        <label for="empresa">Organización / Empresa</label>
+                        <input type="text" id="empresa" name="empresa" required placeholder="Nombre de su compañía">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico Corporativo</label>
+                        <input type="email" id="email" name="email" required placeholder="carlos@suempresa.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Breve descripción de su reto</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿En qué fase se encuentra?"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Solicitar Sesión Estratégica</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>VÉRTICE</span>
+                    <p class="footer-slogan">Strategy • Digital • Operations</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos Legales</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            
+            <div class="footer-copy">
+                &copy; 2026 Vértice Consultoría Estratégica. salavertice.com. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para el menú hamburguesa (Móvil)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-links a');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Cerrar menú móvil al hacer clic en un enlace
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Sombra en la cabecera al hacer scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
