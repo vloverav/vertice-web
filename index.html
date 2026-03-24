@@ -824,7 +824,12 @@
                     </div>
                 </div>
 
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Solicitud enviada correctamente. Nuestro equipo se pondrá en contacto pronto.');">
+<form action="https://formsubmit.co/contacto@salavertice.com" method="POST" class="contact-form">
+                    
+                    <input type="hidden" name="_subject" value="Nuevo Lead Estratégico desde la Web de Vértice">
+                    <input type="hidden" name="_next" value="https://salavertice.com">
+                    <input type="hidden" name="_captcha" value="false">
+
                     <div class="form-group">
                         <label for="nombre">Nombre Completo</label>
                         <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza">
