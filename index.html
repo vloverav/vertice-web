@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vértice SDO | Strategy • Digital • Operations</title>
-    <meta name="description" content="Firma boutique especializada en cerrar la brecha entre la visión estratégica y la capacidad real de ejecución operativa.">
+    <meta name="description" content="Firma boutique especializada en cerrar la brecha entre la visión estratégica y la ejecución operativa.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,666 +12,100 @@
 
     <style>
         /* ==========================================================================
-           1. VARIABLES CSS (IDENTIDAD VISUAL ESTRICTA)
+           1. VARIABLES Y ESTILOS BASE
            ========================================================================== */
         :root {
             --dark-blue: #1B263B;
             --corp-blue: #2E86AB;
             --vertice-orange: #E04300;
             --neutral-grey: #E2E2E2;
-            --bg-cream: #EEE0CB; /* Corregido a HEX válido (0 en lugar de O) */
+            --bg-cream: #EEE0CB;
             --text-main: #334155;
             --white: #FFFFFF;
             --font-main: 'Inter', sans-serif;
             --transition: all 0.3s ease;
         }
 
-        /* ==========================================================================
-           2. RESET Y ESTILOS BASE
-           ========================================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-main);
-            color: var(--text-main);
-            line-height: 1.6;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--dark-blue);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Contenedor principal para alinear el contenido */
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-main); line-height: 1.6; background-color: var(--white); overflow-x: hidden; }
+        h1, h2, h3, h4 { color: var(--dark-blue); font-weight: 700; }
+        a { text-decoration: none; transition: var(--transition); }
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 
         /* Botones */
-        .btn {
-            display: inline-block;
-            background-color: var(--vertice-orange);
-            color: var(--white);
-            padding: 1rem 2rem;
-            font-weight: 600;
-            border-radius: 4px;
-            border: 2px solid var(--vertice-orange);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: transparent;
-            color: var(--vertice-orange);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--vertice-orange);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--vertice-orange);
-            color: var(--white);
-        }
+        .btn { display: inline-block; background-color: var(--vertice-orange); color: var(--white); padding: 1rem 2rem; font-weight: 600; border-radius: 4px; border: 2px solid var(--vertice-orange); cursor: pointer; transition: var(--transition); border: none; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--vertice-orange); color: var(--vertice-orange); }
 
         /* ==========================================================================
-           3. CABECERA Y NAVEGACIÓN
+           2. NAVEGACIÓN
            ========================================================================== */
-        header {
-            background-color: var(--white);
-            border-bottom: 1px solid var(--neutral-grey);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+        header { background-color: var(--white); border-bottom: 1px solid var(--neutral-grey); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+        .logo img { height: 65px; width: auto; }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 0.95rem; color: var(--text-main); }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 90px;
-        }
+        /* ==========================================================================
+           3. SECCIONES PRINCIPALES
+           ========================================================================== */
+        .hero { background-color: var(--bg-cream); padding: 12rem 0 8rem 0; min-height: 85vh; display: flex; align-items: center; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); margin-bottom: 2.5rem; font-weight: 300; max-width: 750px; }
 
-        .logo img {
-            height: 65px;
-            width: auto;
-            display: block;
-        }
+        .business-lines { padding: 6rem 0; margin-top: -4rem; position: relative; z-index: 10; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card-large { background: var(--white); padding: 3rem 2.5rem; border: 1px solid var(--neutral-grey); border-radius: 8px; border-top: 4px solid var(--corp-blue); transition: var(--transition); }
+        .card-large:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .card-icon { width: 40px; height: 40px; color: var(--vertice-orange); margin-bottom: 1.5rem; }
 
-        /* Fallback visual en caso de que la imagen no cargue */
-        .logo-fallback {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .services { padding: 5rem 0 8rem 0; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .service-card { border: 1px solid var(--neutral-grey); padding: 2.5rem; border-radius: 4px; }
+        .service-card h4 { margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .service-card h4::before { content: ''; width: 8px; height: 8px; background: var(--vertice-orange); border-radius: 50%; }
+
+        .why-us { background-color: var(--bg-cream); padding: 8rem 0; }
+        .why-us-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .why-us-image img { width: 100%; max-height: 500px; object-fit: contain; }
+
+        .approach { padding: 8rem 0; }
+        .timeline { position: relative; max-width: 800px; margin: 4rem auto 0; }
+        .timeline::before { content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: var(--neutral-grey); }
+        .timeline-step { position: relative; margin-bottom: 3rem; padding-left: 5rem; }
+        .timeline-marker { position: absolute; left: 0; top: 0; width: 50px; height: 50px; border-radius: 50%; background: var(--white); border: 2px solid var(--corp-blue); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--corp-blue); }
+
+        /* ==========================================================================
+           4. CONTACTO Y FORMULARIO
+           ========================================================================== */
+        .contact { background-color: var(--dark-blue); color: var(--white); padding: 6rem 0; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+        .form-group label { display: block; font-size: 0.9rem; color: var(--neutral-grey); margin-bottom: 0.5rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: transparent; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--white); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--vertice-orange); background: rgba(255,255,255,0.05); }
         
-        .logo-fallback span {
-            color: var(--vertice-orange);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-main);
-        }
-
-        .nav-links a:hover {
-            color: var(--corp-blue);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .hamburger svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--dark-blue);
-        }
+        .checkbox-container { margin: 10px 0; display: flex; align-items: flex-start; gap: 10px; }
+        .checkbox-container input { width: 18px; height: 18px; cursor: pointer; margin-top: 3px; }
+        .checkbox-container label { font-size: 0.85rem; color: rgba(255,255,255,0.9); cursor: pointer; }
 
         /* ==========================================================================
-           4. SECCIÓN HERO
+           5. FOOTER Y MODALES
            ========================================================================== */
-        .hero {
-            background-color: var(--bg-cream);
-            padding: 12rem 0 8rem 0;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-        }
+        footer { background-color: var(--dark-blue); color: var(--white); padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .footer-links span, .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.7); cursor: pointer; text-decoration: underline; }
+        .footer-links span:hover, .footer-links a:hover { color: var(--vertice-orange); }
 
-        .hero-content {
-            max-width: 850px;
-        }
+        .modal-legal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(27, 38, 59, 0.98); overflow-y: auto; padding: 20px; }
+        .modal-content { background: var(--white); margin: 40px auto; padding: 40px; border-radius: 4px; max-width: 850px; color: var(--text-main); position: relative; }
+        .close-modal { float: right; font-size: 28px; font-weight: bold; cursor: pointer; color: var(--corp-blue); }
+        .modal-content h2 { color: var(--dark-blue); border-bottom: 2px solid var(--vertice-orange); padding-bottom: 10px; margin-bottom: 20px; }
+        .modal-content h3 { color: var(--corp-blue); margin-top: 20px; font-size: 1.1rem; }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            color: var(--text-main);
-            max-width: 750px;
-        }
-
-        /* ==========================================================================
-           5. LÍNEAS DE NEGOCIO (3 Columnas)
-           ========================================================================== */
-        .business-lines {
-            padding: 6rem 0;
-            background-color: var(--white);
-            margin-top: -4rem; /* Solapamiento elegante con el Hero */
-            position: relative;
-            z-index: 10;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card-large {
-            background: var(--white);
-            padding: 3rem 2.5rem;
-            border: 1px solid var(--neutral-grey);
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: var(--transition);
-            border-top: 4px solid var(--corp-blue);
-        }
-
-        .card-large:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 1.5rem;
-            color: var(--vertice-orange);
-        }
-
-        .card-large h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-large p {
-            font-size: 1rem;
-            color: var(--text-main);
-        }
-
-        /* ==========================================================================
-           6. DETALLE DE SERVICIOS (Grilla 3x2)
-           ========================================================================== */
-        .services {
-            padding: 5rem 0 8rem 0;
-            background-color: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background-color: var(--white);
-            border: 1px solid var(--neutral-grey);
-            padding: 2.5rem;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            border-color: var(--corp-blue);
-        }
-
-        .service-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .service-card h4::before {
-            content: '';
-            display: block;
-            width: 8px;
-            height: 8px;
-            background-color: var(--vertice-orange);
-            border-radius: 50%;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-            font-weight: 300;
-        }
-
-        .service-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ==========================================================================
-           7. POR QUÉ NOSOTROS (Asimétrico)
-           ========================================================================== */
-        .why-us {
-            background-color: var(--bg-cream);
-            padding: 8rem 0;
-        }
-
-        .why-us-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .why-us-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .why-us-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        /* Contenedor limpio, sin fondos azules ni alturas forzadas */
-        .why-us-image {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ESTILOS PARA LA NUEVA IMAGEN CONCEPTUAL */
-        .why-us-image img.vertice-conceptual-visual {
-            width: 100%;
-            height: auto; 
-            max-height: 500px; 
-            object-fit: contain; 
-            display: block;
-            margin: 0 auto; 
-        }
-
-        /* Ajuste responsive para móviles */
-        @media (max-width: 768px) {
-            .why-us-image img.vertice-conceptual-visual {
-                max-height: 350px;
-            }
-        }
-        /* ==========================================================================
-           8. NUESTRO ENFOQUE (Timeline)
-           ========================================================================== */
-        .approach {
-            padding: 8rem 0;
-            background-color: var(--white);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 4rem auto 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 24px;
-            width: 2px;
-            background-color: var(--neutral-grey);
-        }
-
-        .timeline-step {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 5rem;
-        }
-
-        .timeline-step:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-marker {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--white);
-            border: 2px solid var(--corp-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--corp-blue);
-            z-index: 2;
-        }
-
-        .timeline-content h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            padding-top: 0.5rem;
-        }
-
-        .timeline-content p {
-            color: var(--text-main);
-            font-weight: 300;
-        }
-
-        /* ==========================================================================
-           9. CONTACTO Y CTA FINAL
-           ========================================================================== */
-        .contact {
-            background-color: var(--dark-blue);
-            color: var(--white);
-            padding: 6rem 0;
-        }
-
-        .contact h2 {
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            color: var(--neutral-grey);
-            margin-bottom: 3rem;
-            font-weight: 300;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-size: 0.9rem;
-            color: var(--neutral-grey);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background-color: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 4px;
-            color: var(--white);
-            font-family: var(--font-main);
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--vertice-orange);
-            background-color: rgba(255,255,255,0.05);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .contact-info h3 {
-            color: var(--white);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        /* ==========================================================================
-           10. PIE DE PÁGINA
-           ========================================================================== */
-        footer {
-            background-color: var(--dark-blue);
-            color: var(--white);
-            padding: 4rem 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-logo span {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .footer-slogan {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .footer-links a:hover {
-            color: var(--vertice-orange);
-        }
-
-        .footer-copy {
-            width: 100%;
-            text-align: center;
-            padding-top: 3rem;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
-        }
-
-        /* ==========================================================================
-           11. RESPONSIVE DESIGN (Media Queries)
-           ========================================================================== */
-        @media (max-width: 992px) {
-            .why-us-content, .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .why-us-image {
-                height: 400px;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 90px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 90px);
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: var(--transition);
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero {
-                padding: 10rem 0 6rem 0;
-            }
-
-            .business-lines {
-                margin-top: -2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-marker {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .timeline-step {
-                padding-left: 4rem;
-            }
-        }
-    /* --- ESTILOS LEGALES (MODALES) --- */
-.modal-legal {
-    display: none; 
-    position: fixed; 
-    z-index: 9999; 
-    left: 0; top: 0; 
-    width: 100%; height: 100%; 
-    background-color: rgba(27, 38, 59, 0.98); 
-    overflow-y: auto;
-    padding: 20px;
-}
-.modal-content {
-    background-color: var(--white);
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 4px;
-    max-width: 850px;
-    line-height: 1.6;
-    color: var(--text-main);
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-}
-.close-modal {
-    position: sticky;
-    top: 0;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: var(--corp-blue);
-}
-.modal-content h2 { color: var(--dark-blue); border-bottom: 2px solid var(--vertice-orange); padding-bottom: 10px; margin-bottom: 20px; }
-.modal-content h3 { color: var(--corp-blue); margin-top: 25px; font-size: 1.1rem; }
-.modal-content p, .modal-content li { font-size: 0.95rem; margin-bottom: 12px; }
+        @media (max-width: 768px) { .why-us-content, .contact-wrapper { grid-template-columns: 1fr; } .navbar { height: 70px; } }
     </style>
 </head>
 <body>
@@ -679,23 +113,16 @@
     <header>
         <div class="container navbar">
             <a href="#" class="logo">
-                <img src="Vértice SDO.jpg" alt="Vértice SDO | Strategy • Digital • Operations" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-fallback" style="display: none;">VÉRTICE<span>.</span></div>
+                <img src="Vértice SDO.jpg" alt="Vértice SDO" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display: none; font-weight: 700; font-size: 1.5rem; color: var(--dark-blue);">VÉRTICE<span style="color:var(--vertice-orange);">.</span></div>
             </a>
-            
             <nav>
                 <ul class="nav-links">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#enfoque">Enfoque</a></li>
                     <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#contacto" class="btn btn-outline" style="padding: 0.5rem 1rem;">Contacto</a></li>
+                    <li><a href="#contacto" class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Contacto</a></li>
                 </ul>
-                <button class="hamburger" aria-label="Abrir menú">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                    </svg>
-                </button>
             </nav>
         </div>
     </header>
@@ -703,142 +130,56 @@
     <main>
         <section id="inicio" class="hero">
             <div class="container">
-                <div class="hero-content">
-                    <h1>Hacemos que la estrategia y los proyectos funcionen en entornos complejos.</h1>
-                    <p>Vértice es una firma boutique especializada en cerrar la brecha entre la visión estratégica de la alta dirección y la capacidad real de ejecución operativa, ejecutando con rigor en tiempos de incertidumbre. Apoyado en la digitalización.</p>
-                    <a href="#contacto" class="btn">Agendar diagnóstico estratégico</a>
-                </div>
+                <h1>Hacemos que la estrategia y los proyectos funcionen en entornos complejos.</h1>
+                <p>Vértice es una firma boutique especializada en cerrar la brecha entre la visión estratégica y la capacidad real de ejecución operativa.</p>
+                <a href="#contacto" class="btn">Agendar diagnóstico estratégico</a>
             </div>
         </section>
 
         <section id="enfoque" class="business-lines container">
             <div class="cards-grid">
                 <div class="card-large">
-                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <circle cx="12" cy="12" r="6"></circle>
-                        <circle cx="12" cy="12" r="2"></circle>
-                    </svg>
-                    <h3>Estrategia y transformación organizacional</h3>
-                    <p>Diseño de planes estratégicos ejecutables, definición de propósito empresarial profundo y alineación milimétrica de las estructuras organizativas corporativas.</p>
+                    <h3>Estrategia y transformación</h3>
+                    <p>Diseño de planes ejecutables y alineación milimétrica de estructuras organizativas.</p>
                 </div>
-
                 <div class="card-large">
-                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                    </svg>
-                    <h3>Programas, Proyectos y PMO Estratégica</h3>
-                    <p>Dirección técnica de iniciativas críticas de negocio, gestión integral de portafolios y fortalecimiento de mecanismos de control operativo.</p>
+                    <h3>PMO Estratégica</h3>
+                    <p>Dirección técnica de iniciativas críticas y gestión integral de portafolios.</p>
                 </div>
-
                 <div class="card-large">
-                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
                     <h3>Transformación Digital e IA</h3>
-                    <p>Implementación de tecnología SaaS e Inteligencia Artificial como habilitadores de eficiencia. Digitalización centrada exclusivamente en la mejora de procesos.</p>
+                    <p>Implementación de tecnología SaaS e IA como habilitadores de eficiencia real.</p>
                 </div>
             </div>
         </section>
 
         <section id="servicios" class="services">
             <div class="container">
-                <div class="section-header">
-                    <h2>Capacidades Operativas</h2>
-                    <p style="font-size: 1.1rem; color: var(--text-main);">Profundidad analítica y rigor técnico aplicados a resolver sus retos más complejos.</p>
-                </div>
-
                 <div class="services-grid">
                     <div class="service-card">
-                        <h4>Gobernanza Corporativa y alineación</h4>
-                        <p>Diseñamos marcos de gobierno corporativo que aseguran la coherencia absoluta entre la junta directiva y el equipo gerencial, estableciendo roles, responsabilidades y procesos de toma de decisiones inequívocos.</p>
-                        <p>Nuestra metodología elimina los silos organizacionales, garantizando que cada área de su empresa opere bajo un mismo propósito y objetivos estratégicos unificados.</p>
+                        <h4>Gobernanza y Alineación</h4>
+                        <p>Marcos de gobierno que aseguran la coherencia entre la dirección y la operación.</p>
                     </div>
-
                     <div class="service-card">
-                        <h4>Planificación Estratégica Ejecutable</h4>
-                        <p>Traducimos visiones corporativas complejas en hojas de ruta pragmáticas y orientadas a la acción, definiendo OKRs y KPIs que permiten a la alta gerencia medir el avance real de forma tangible.</p>
-                        <p>Evitamos los planes estáticos que quedan en el papel. Construimos estrategias dinámicas que se adaptan a la volatilidad del mercado sin perder el foco en la rentabilidad neta.</p>
+                        <h4>Planificación Ejecutable</h4>
+                        <p>Traducimos visiones en hojas de ruta pragmáticas con OKRs y KPIs tangibles.</p>
                     </div>
-
                     <div class="service-card">
-                        <h4>Dirección de Programas Complejos</h4>
-                        <p>Asumimos el liderazgo técnico y metodológico de iniciativas críticas, aplicando los estándares globales del PMI (Project Management Institute) adaptados a la realidad específica de su industria.</p>
-                        <p>Coordinamos equipos multidisciplinarios e interdepartamentales para asegurar la entrega de proyectos en tiempo, costo y alcance, mitigando riesgos proactivamente.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Mecanismos de control y seguimiento</h4>
-                        <p>Implementamos tableros de control directivo y rutinas de seguimiento (PMO) que brindan visibilidad absoluta y en tiempo real sobre el estado del portafolio de proyectos de la organización.</p>
-                        <p>Detectamos desviaciones presupuestarias y cronológicas de forma temprana, permitiendo intervenciones ejecutivas rápidas y basadas en datos para proteger su inversión.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Adopción de Soluciones SaaS e IA</h4>
-                        <p>Evaluamos, seleccionamos e integramos herramientas tecnológicas basadas en la nube e Inteligencia Artificial para mejorar sus operaciones diarias.</p>
-                        <p>No implementamos tecnología por moda. Nuestro enfoque de gestión del cambio asegura una adopción cultural efectiva por parte de sus equipos, maximizando el ROI tecnológico.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Digitalización y optimización</h4>
-                        <p>Analizamos a profundidad su cadena de valor operativa para identificar redundancias sistémicas, automatizar tareas manuales repetitivas y rediseñar flujos de trabajo de principio a fin.</p>
-                        <p>El resultado es una organización sustancialmente más esbelta, rápida y escalable, capaz de operar con menor fricción administrativa y enfocada en actividades core de alto valor.</p>
+                        <h4>Dirección de Programas</h4>
+                        <p>Liderazgo metodológico para asegurar entrega en tiempo, costo y alcance.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-<section id="nosotros" class="why-us">
+        <section id="nosotros" class="why-us">
             <div class="container why-us-content">
                 <div class="why-us-text">
-                    <h2>Experiencia Big.<br>Agilidad Boutique.</h2>
-                    <p>Más de 15 años de experiencia corporativa global y metodología rigurosamente probada con la flexibilidad, la rapidez de respuesta y el compromiso hiper-personalizado que solo una firma boutique puede ofrecer.</p>
-                    <p>Somos especialistas en operar en mercados de alta volatilidad y complejidad (con profunda experiencia probada en Venezuela y LATAM), aportando un enfoque híbrido e interdisciplinario que integra indisolublemente la estrategia directiva, las operaciones tácticas y la tecnología moderna.</p>
+                    <h2>Experiencia Big. Agilidad Boutique.</h2>
+                    <p>Especialistas en operar en mercados de alta volatilidad (Venezuela y LATAM), integrando estrategia, operaciones y tecnología moderna.</p>
                 </div>
                 <div class="why-us-image">
-                    <img src="vertice_asset_conceptual.PNG" alt="Vértice: Convergencia de Estrategia, Digital y Operaciones" class="vertice-conceptual-visual">
-                </div>
-            </div>
-        </section>
-
-        <section class="approach">
-            <div class="container">
-                <div class="section-header">
-                    <h2>El 'Cómo' es tan importante como el 'Qué'</h2>
-                    <p>Nuestra metodología de intervención no es una caja negra. Acompañamos a su organización desde la concepción hasta la ejecución operativa, pasando por la transformación digital.</p>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-step">
-                        <div class="timeline-marker">1</div>
-                        <div class="timeline-content">
-                            <h4>Diagnóstico y alineación</h4>
-                            <p>Conocimiento del estado actual, identificación de retos, brechas operativas, necesidades tecnológicas y consenso directivo sobre los objetivos críticos de negocio antes de mover un solo recurso.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-marker">2</div>
-                        <div class="timeline-content">
-                            <h4>Diseño de solución ejecutable</h4>
-                            <p>Arquitectura del plan de acción. Definición de hitos, presupuesto, requerimientos tecnológicos y métricas de éxito (KPIs/OKRs) libres de ambigüedad.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-marker">3</div>
-                        <div class="timeline-content">
-                            <h4>Ejecución acompañada</h4>
-                            <p>Implementación bajo un modelo híbrido (Remoto/Presencial). Actuamos como PMO externa o colíderes del proyecto para asegurar el cumplimiento cronológico y financiero.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-marker">4</div>
-                        <div class="timeline-content">
-                            <h4>Transferencia y control</h4>
-                            <p>No generamos dependencia. Aseguramos la adopción del cambio tecnológico y/o metodológico, dejando capacidades instaladas y tableros de control en su equipo interno.</p>
-                        </div>
-                    </div>
+                    <img src="vertice_asset_conceptual.PNG" alt="Visual Conceptual Vértice">
                 </div>
             </div>
         </section>
@@ -847,225 +188,135 @@
             <div class="container contact-wrapper">
                 <div class="contact-info">
                     <h3>Hablemos de tu próximo hito.</h3>
-                    <p>Agenda una sesión estratégica de diagnóstico confidencial para evaluar la alineación y viabilidad de tus proyectos,retos o necesidades corporativos actuales. Obtendrás claridad inmediata sobre los próximos pasos.</p>
-                    
-                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--vertice-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span style="font-weight: 300; font-size: 1.1rem;">contacto@salavertice.com</span>
-                    </div>
+                    <p>Agenda una sesión estratégica de diagnóstico confidencial.</p>
+                    <p style="font-weight: 600;">contacto@salavertice.com</p>
                 </div>
 
-<div id="contenedor-formulario">
-    <div style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
-    <input type="checkbox" id="acepto-privacidad" required style="margin-top: 5px;">
-    <label for="acepto-privacidad" style="font-size: 0.85rem; color: var(--white); opacity: 0.8;">
-        He leído y acepto la <a href="javascript:void(0)" onclick="openLegal('privacidad')" style="color: var(--vertice-orange); text-decoration: underline;">Política de Privacidad</a>.
-    </label>
-</div>
-    <form id="form-contacto" action="https://formsubmit.co/ajax/contacto@salavertice.com" method="POST" class="contact-form">
-        
-        <input type="hidden" name="_subject" value="Nuevo Lead Estratégico desde la Web de Vértice">
-        <input type="hidden" name="_captcha" value="false">
+                <div id="contenedor-formulario">
+                    <form id="form-contacto" action="https://formsubmit.co/ajax/contacto@salavertice.com" method="POST" class="contact-form">
+                        <input type="hidden" name="_subject" value="Nuevo Lead Estratégico - Vértice SDO">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" name="nombre" required placeholder="Ej. Carlos Mendoza">
+                        </div>
+                        <div class="form-group">
+                            <label>Empresa</label>
+                            <input type="text" name="empresa" required placeholder="Nombre de su compañía">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Corporativo</label>
+                            <input type="email" name="email" required placeholder="carlos@suempresa.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Breve descripción del reto</label>
+                            <textarea name="mensaje" rows="3" required placeholder="¿En qué podemos ayudarle?"></textarea>
+                        </div>
+                        
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="acepto-privacidad" required>
+                            <label for="acepto-privacidad">
+                                He leído y acepto la <span onclick="openLegal('privacidad')" style="text-decoration:underline; color:var(--vertice-orange);">Política de Privacidad</span>.
+                            </label>
+                        </div>
 
-        <div class="form-group">
-            <label for="nombre">Nombre Completo</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Mendoza">
-        </div>
-        <div class="form-group">
-            <label for="empresa">Organización / Empresa</label>
-            <input type="text" id="empresa" name="empresa" required placeholder="Nombre de su compañía">
-        </div>
-        <div class="form-group">
-            <label for="email">Correo Electrónico Corporativo</label>
-            <input type="email" id="email" name="email" required placeholder="carlos@suempresa.com">
-        </div>
-        <div class="form-group">
-            <label for="mensaje">Breve descripción de su reto</label>
-            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿En qué fase se encuentra?"></textarea>
-        </div>
-        <div style="margin: 20px 0; display: flex; align-items: flex-start; gap: 10px; text-align: left;">
-    <input type="checkbox" id="acepto-privacidad" required style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--vertice-orange); margin-top: 3px;">
-    <label for="acepto-privacidad" style="font-size: 0.85rem; color: var(--white); opacity: 0.9; cursor: pointer; line-height: 1.4;">
-        He leído y acepto la 
-        <span onclick="openLegal('privacidad')" style="color: var(--vertice-orange); text-decoration: underline; font-weight: 600;">Política de Privacidad</span>.
-    </label>
-</div>
+                        <button type="submit" class="btn" style="width: 100%;">Solicitar Sesión Estratégica</button>
+                    </form>
 
-<button type="submit" class="cta-button" style="width: 100%;">Solicitar Sesión Estratégica</button>
-        <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Solicitar Sesión Estratégica</button>
-    </form>
-
-    <div id="mensaje-exito" style="display: none; background-color: rgba(46, 134, 171, 0.1); border: 1px solid var(--corp-blue); padding: 2rem; border-radius: 4px; text-align: center; margin-top: 1rem;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--corp-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem; margin-left: auto; margin-right: auto; display: block;">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-        </svg>
-        <h4 style="color: var(--white); margin-bottom: 0.5rem; font-size: 1.2rem;">Solicitud enviada exitosamente</h4>
-        <p style="color: var(--neutral-grey); font-size: 0.95rem; margin-bottom: 0;">Hemos recibido tu información. Nuestro equipo revisará tu reto y pronto nos pondremos en contacto contigo.</p>
-    </div>
-</div>
+                    <div id="mensaje-exito" style="display: none; padding: 2rem; text-align: center;">
+                        <h4 style="color: var(--white);">¡Solicitud enviada!</h4>
+                        <p>Nos pondremos en contacto pronto.</p>
+                    </div>
+                </div>
             </div>
         </section>
-
     </main>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span>VÉRTICE</span>
-                    <p class="footer-slogan">Strategy • Digital • Operations</p>
+                    <span style="font-size: 1.2rem; font-weight: 700;">VÉRTICE SDO</span>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Strategy • Digital • Operations</p>
                 </div>
                 
-                <div class="footer-links" style="color: var(--white); opacity: 0.8; font-size: 0.85rem; margin-top: 15px;">
-    <span onclick="openLegal('privacidad')" style="cursor:pointer; text-decoration:underline;">Política de Privacidad</span>
-    <span style="margin: 0 10px; opacity: 0.5;">|</span>
-    <span onclick="openLegal('terminos')" style="cursor:pointer; text-decoration:underline;">Términos Legales</span>
-    <span style="margin: 0 10px; opacity: 0.5;">|</span>
-    <a href="#" target="_blank" style="color: var(--white); text-decoration:none; opacity: 0.9;">
-        <span style="text-decoration:underline;">LinkedIn</span>
-    </a>
-</div>
+                <div class="footer-links">
+                    <span onclick="openLegal('privacidad')">Política de Privacidad</span>
+                    <span style="margin: 0 10px; opacity: 0.3; cursor: default;">|</span>
+                    <span onclick="openLegal('terminos')">Términos Legales</span>
+                    <span style="margin: 0 10px; opacity: 0.3; cursor: default;">|</span>
+                    <a href="#" target="_blank" style="text-decoration: underline;">LinkedIn</a>
+                </div>
             </div>
-            
-            <div class="footer-copy">
-                &copy; 2026 Vértice Consultoría Estratégica. salavertice.com. Todos los derechos reservados.
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.75rem; opacity: 0.4;">
+                &copy; 2026 Vértice Consultoría Estratégica. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
+    <div id="modal-privacidad" class="modal-legal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLegal('privacidad')">&times;</span>
+            <h2>Política de Privacidad</h2>
+            <p>Responsable: <strong>Victor Alfonzo Lovera Viloria</strong> (NIF: 60196947J).</p>
+            <h3>Finalidad</h3>
+            <p>Gestión de potenciales clientes y envío de propuestas de consultoría estratégica y digital.</p>
+            <h3>Derechos</h3>
+            <p>Puede ejercer sus derechos de acceso y supresión en <strong>contacto@salavertice.com</strong>.</p>
+        </div>
+    </div>
+
+    <div id="modal-terminos" class="modal-legal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLegal('terminos')">&times;</span>
+            <h2>Términos Legales</h2>
+            <p>Titular: Victor Alfonzo Lovera Viloria (NIF: 60196947J). Actividad: Vértice SDO.</p>
+            <h3>Propiedad Intelectual</h3>
+            <p>Las metodologías expuestas (como el rol de "Actor Puente") son propiedad intelectual del titular.</p>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica para el menú hamburguesa (Móvil)
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            const links = document.querySelectorAll('.nav-links a');
-
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-
-            // Cerrar menú móvil al hacer clic en un enlace
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
-
-            // Sombra en la cabecera al hacer scroll
-            const header = document.querySelector('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 10) {
-                    header.style.boxShadow = '0 4px 10px rgba(0,0,0,0.05)';
-                } else {
-                    header.style.boxShadow = 'none';
-                }
-            });
-        });
- // --- Lógica para enviar el formulario sin recargar la página ---
-            const formContacto = document.getElementById('form-contacto');
-            const mensajeExito = document.getElementById('mensaje-exito');
-
-            if (formContacto) {
-                formContacto.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Evita que la página recargue
-                    
-                    const boton = formContacto.querySelector('button[type="submit"]');
-                    boton.textContent = 'Enviando...';
-                    boton.disabled = true;
-
-                    // Enviamos los datos en segundo plano
-                    fetch(formContacto.action, {
-                        method: formContacto.method,
-                        body: new FormData(formContacto)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Ocultamos el formulario y mostramos el mensaje elegante
-                        formContacto.style.display = 'none';
-                        mensajeExito.style.display = 'block';
-                    })
-                    .catch(error => {
-                        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
-                        boton.textContent = 'Solicitar Sesión Estratégica';
-                        boton.disabled = false;
-                    });
-                });
+        // Gestión de Modales
+        function openLegal(id) {
+            document.getElementById('modal-' + id).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLegal(id) {
+            document.getElementById('modal-' + id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal-legal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
-    // ... (aquí termina tu lógica de envío de formulario actual)
-                    .catch(error => {
-                        alert('Hubo un problema al enviar el formulario. Por favor, inténtelo de nuevo.');
-                        boton.textContent = 'Solicitar Sesión Estratégica';
-                        boton.disabled = false;
-                    });
+        };
+
+        // Envío de Formulario
+        const form = document.getElementById('form-contacto');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                btn.textContent = 'Enviando...';
+                btn.disabled = true;
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(() => {
+                    form.style.display = 'none';
+                    document.getElementById('mensaje-exito').style.display = 'block';
+                })
+                .catch(() => {
+                    alert('Error al enviar. Intente de nuevo.');
+                    btn.disabled = false;
+                    btn.textContent = 'Solicitar Sesión Estratégica';
                 });
-            }
-
-  /* --- GESTIÓN DE MODALES LEGALES --- */
-function openLegal(id) {
-    const modal = document.getElementById('modal-' + id);
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeLegal(id) {
-    const modal = document.getElementById('modal-' + id);
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Cerrar al hacer clic fuera del modal
-window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal-legal')) {
-        event.target.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-});
+            });
+        }
     </script>
-<div id="modal-privacidad" class="modal-legal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeLegal('privacidad')">&times;</span>
-        <h2>Política de Privacidad</h2>
-        <p>En cumplimiento del RGPD, se informa que los datos personales facilitados a través de este sitio web serán tratados por <strong>Victor Alfonzo Lovera Viloria</strong> (NIF: 60196947J).</p>
-        
-        <h3>1. Finalidad del tratamiento</h3>
-        <p>Los datos recogidos (Nombre, Empresa, Email, Reto de Negocio) tienen como única finalidad la gestión de potenciales clientes, el envío de propuestas de consultoría y la respuesta a consultas profesionales relacionadas con los servicios de Vértice SDO.</p>
-        
-        <h3>2. Legitimación</h3>
-        <p>El tratamiento se basa en el consentimiento del interesado al remitir su consulta o solicitud de sesión estratégica.</p>
-        
-        <h3>3. Conservación</h3>
-        <p>Los datos se conservarán durante el tiempo necesario para cumplir con la finalidad para la que se recabaron y para determinar las posibles responsabilidades que se pudieran derivar.</p>
-        
-        <h3>4. Derechos</h3>
-        <p>Usted puede ejercer sus derechos de acceso, rectificación, supresión y oposición dirigiéndose a: <strong>contacto@salavertice.com</strong>.</p>
-    </div>
-</div>
-
-<div id="modal-terminos" class="modal-legal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeLegal('terminos')">&times;</span>
-        <h2>Términos y Condiciones Legales</h2>
-        
-        <h3>1. Identificación del Titular</h3>
-        <p>El titular del sitio web salavertice.com es Victor Alfonzo Lovera Viloria (NIF: 60196947J), con domicilio profesional para notificaciones vinculado a la actividad de Vértice SDO.</p>
-        
-        <h3>2. Propiedad Intelectual</h3>
-        <p>Todo el contenido de este sitio (textos, metodologías de "Actor Puente", gráficos y estructura) son propiedad exclusiva del titular o cuenta con las licencias correspondientes. Queda prohibida la reproducción total o parcial de las metodologías expuestas sin autorización expresa.</p>
-        
-        <h3>3. Exclusión de Responsabilidad</h3>
-        <p>Vértice SDO ofrece servicios de consultoría estratégica. La información contenida en esta web es de carácter informativo y no constituye una oferta contractual vinculante hasta la firma de un presupuesto o acuerdo de servicios formal.</p>
-        
-        <h3>4. Jurisdicción</h3>
-        <p>Para cualquier controversia relacionada con este sitio web, las partes se someten a la legislación española y a los juzgados y tribunales competentes.</p>
-    </div>
-</div>
 </body>
 </html>
